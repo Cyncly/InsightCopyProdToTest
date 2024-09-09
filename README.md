@@ -41,7 +41,21 @@ The "CopyProdToTest" script must be run by a domain user account with following 
 If the option to copy Reporting Services Reports is used, the Powershell Module "ReportingServicesTools" is also required. To install this module run the following command from a Powershell as Administrator:
 ```Install-Module -Force -Allowclobber ReportingServicesTools```
 
-
 ## Get Started
+- Download "CopyProdToTest.zip" from the "pkg" subfolder
+- Extract the zip file to a local on the machine where you want to run CopyProdToTest, e.g. "C:\Insight\utilities\CopyProdToTest"
+- Make a copy of the subfolder  "Template" with a speaking name, e.g. the Company name and the purpose of the copy.
+- Edit the file "config.ps1" in the new subfolder and adjust all parameter values according to your environment and your needs.
+- Create a task in Windows Task Scheduler with:
+	- Name: "Insight Copy Prod to Test" or similar
+	- Program: C:\Insight\utilities\CopyProdToTest\Call_CopyProdToTest.bat
+	- Arguments: Name of the subfolder created before
+	- Start in: Folder with the script, e.g. C:\Insight\utilities\CopyProdToTest
+	- Account: Domain account with the required privileges.
+	- Select the option "Run whether user is logged on or not"
+	- Trigger: optional. If you want to run the job only on demand, leave this out
+- Run the scheduled task manually and check the results in the Logfile "log/CopyProdToTest_XXXX.log".
 
-## Run CopyProdToTest
+## Further information
+See the document "Insight_CopyProdToTest_InstallationGuide for more details.
+
