@@ -1,0 +1,16 @@
+dbo.Settings
+dbo.UserSettings
+dbo.OrganizationCommunicationTypes
+dbo.Userlist
+dbo.UserGroupUserList
+dbo.WorkCenter
+inResponse.ActionActionParameters
+inResponse.Trees
+inResponse.Monitors
+inResponse.ActionEMails
+inResponse.ActionReportServices
+inResponse.ActionReportServiceDefinitions
+inResponse.ServiceUserActionTypes
+inResponse.ServiceUserMonitors
+inResponse.Services
+inResponse.ServiceUsers
