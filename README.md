@@ -42,7 +42,7 @@ If the option to copy Reporting Services Reports is used, the Powershell Module 
 ```Install-Module -Force -Allowclobber ReportingServicesTools```
 
 ## Get Started
-- Download "CopyProdToTest.zip" from the "pkg" subfolder
+- Download "CopyProdToTest.zip" from the "release" subfolder
 - Extract the zip file to a local on the machine where you want to run CopyProdToTest, e.g. "C:\Insight\utilities\CopyProdToTest"
 - Make a copy of the subfolder  "Template" with a speaking name, e.g. the Company name and the purpose of the copy.
 - Edit the file "config.ps1" in the new subfolder and adjust all parameter values according to your environment and your needs.
