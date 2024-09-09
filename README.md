@@ -1,5 +1,11 @@
 # CopyProdToTest
-Automation of Copying an Insight (and optionally Construct) Database from one environment (e.g. "Prod") to another (e.g. "Test" including adjustments for the target environment
+Automation of Copying an Insight (and optionally Construct) Database from one environment (e.g. "Prod") to another (e.g. "Test" including adjustments for the target environment.
+This package is provided "as is" for 2020 Insight customers, without warranty of any kind.
+If a customer needs advice, support or any other services regarding this package,
+we will charge our efforts based on time and material.
+
+Copyright (c) 2024 20-20 Technologies GmbH
+
 
 ## Overview
 The solution described here is based on Powershell and SQL Scripts. The main script is named "CopyProdToTest.ps1".
