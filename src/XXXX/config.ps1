@@ -40,10 +40,6 @@
 # Check if target database has same Insight version as source:
 [boolean]$CheckInsightVersionBeforeCopy=$false
 
-# Base folder containing Insight "New installation" SQL scripts.
-# There must be a subfolder "X.Y.Z" below this base folder for the Insight version of the Insight database:
-[string]$NewInstallationScriptsBasedir	= "\\oss-drive.compusoft.local\inSight\Utilities\NewInstallationScripts"
-
 # Domain users and groups with db_owner rights for Insight and Construct (comma-separated list)
 [string]$DBOwners		= "COMPUSOFT\os_insightusers"	
 [string]$DBOwnersIMOS	= "" #$DBOwners	# by default use the same value as for Insight database

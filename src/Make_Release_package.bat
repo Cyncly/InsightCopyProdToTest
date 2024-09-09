@@ -1,4 +1,5 @@
-SET RELEASEDIR="C:\Users\matthias.beckmann\OneDrive - Cyncly\_MyFiles\Insight\CopyProdToTest\Release"
+SET BASEDIR=%~dp0..\
+SET RELEASEDIR=%BASEDIR%pkg
 SET TARGETZIP="%RELEASEDIR%\CopyProdToTest.zip"
 DEL %RELEASEDIR%\CopyProdToTest.zip
 

@@ -49,7 +49,7 @@ if ( Test-Path $Configfile ){
 [boolean]$PurgeAllTransactionalData=$false
 [string]$StoredProcCleanupTransactionalData=""
 [boolean]$CheckBackupPath=$true
-
+[string]$NewInstallationScriptsBasedir=$BasePath + "\tools\NewInstallationScripts"
 # Read config file:
 . $Configfile
 # Check/Input Parameter

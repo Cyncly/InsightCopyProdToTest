@@ -42,10 +42,6 @@
 # Check if target database has same Insight version as source:
 [boolean]$CheckInsightVersionBeforeCopy=$true
 
-# Base folder containing Insight "New installation" SQL scripts.
-# There must be a subfolder "X.Y.Z" below this base folder for the Insight version of the Insight database:
-[string]$NewInstallationScriptsBasedir	= "\\DBSRV2\inSight\Utilities\NewInstallationScripts"
-
 # Domain users and groups or SQL Logins with db_owner rights for Insight database (comma-separated list)
 [string]$DBOwners		= ""	# e.g. "MYDOMAIN\insightusers,MYDOMAIN\inresponse1"	
 
