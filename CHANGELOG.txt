@@ -1,5 +1,5 @@
 2024-09-09
-- "New Installation scripts" are now included in the package, no need any more to extract them from the Insight Core package manually.
+- "New Installation scripts" are now included in the package, no need any more to extract them from the Insight Core package manually..
 2024-09-06
 - If tables from the parameter $TruncateTableList have referencing tables, the table will be emptied by DELETEs in batches of 100000 rows instead of TRUNCATE.
 - The database transaction Log will be shrinked on the Target database at the end of the process.
