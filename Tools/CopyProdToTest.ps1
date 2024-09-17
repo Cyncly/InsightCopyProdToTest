@@ -821,15 +821,13 @@ if ( $PurgeAllTransactionalData) {
 	$TruncateTableList.split(",")|foreach{
 		$Tablename=$_.trim()
 		if ( $Tablename.Length -gt 0) {
-			Write-Msg -Message "Truncate/Delete table $Tablename"
-			$Query = "IF EXISTS ( SELECT 1 FROM sys.foreign_keys fk WHERE fk.referenced_object_id=OBJECT_ID(N'"+$Tablename+"'))
-				BEGIN
-					EXEC [Sha2020].[spDBA_utlDeleteTableInBatches]	@DoDataPurge=1, @BatchSize=100000, @TableName=N'"+$TableName+"'
-				END ELSE
-				BEGIN
-					EXEC ('TRUNCATE TABLE "+$Tablename+" ')
-				END"
-			Invoke-sqlcmd -TrustServerCertificate -ServerInstance $TargetServer -Database $TargetInsightDB -Query $Query -QueryTimeout $SQLTimeoutSec -Verbose
+			Write-Msg -Message "Truncate table $Tablename including referencing tables..." # functions
+            $SchemaName=$Tablename.Split(".")[0]
+            $TablenameWoSchema=$Tablename.Split(".")[1]
+            $GenerateScript= $ScriptFullPath + "\GenerateTruncateRecursive.ps1"
+            $SqlFileTmp=$env:TMP + "\TruncateRecursive.sql"
+            & $GenerateScript -DatabaseServer $TargetServer -DatabaseName $TargetInsightDB -SchemaName $SchemaName -Tablename $TableNameWoSchema >$SQLFileTmp
+			Invoke-sqlcmd -TrustServerCertificate -ServerInstance $TargetServer -Database $TargetInsightDB -InputFile $SqlFileTmp -IncludeSqlUserErrors -OutputSqlErrors -QueryTimeout $SQLTimeoutSec -Verbose
 		}
 	}
 }
