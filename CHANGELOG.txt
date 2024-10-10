@@ -1,3 +1,12 @@
+2024-10-10
+- Changes when modifying email addresses:
+	- The "from" field will not be modified any longer
+	- When using the parameter @ReplaceAllEmailAddressesBy, the "CC" and "BCC" addresses are set to NULL instead of the address
+	  provided with the parameter.
+- Changes of email related parameters in the template config file:
+	- @ReplaceAllEmailAddressesBy is now set to an example address.
+	- @EmailAddressDomainPrefix is now empty by default
+	- The setting "SMTPHost" will not be modified by default.
 2024-09-09
 - "New Installation scripts" are now included in the package, no need any more to extract them from the Insight Core package manually..
 2024-09-06

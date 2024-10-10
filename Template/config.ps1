@@ -95,20 +95,24 @@
 
 # Set specific Insight settings to fix values in Test:
 # Syntax : (SETCATEGORY, SETSUBCATEGORY, SETNAME, SETVALUE),...
+# Example for SMTP Server setting:
+# ('inResponse', 	'Email',	'SMTPHost',	'smtp.nomail.local')
 [string]$SpecificInsightSettings = "
-	('inResponse', 	'Email',	'SMTPHost',	'smtp.nomail.local') 
-	,('Interfacing', 	'2020FactoryNetwork',	'FNEnvironment',	'test')
+	('Interfacing', 	'2020FactoryNetwork',	'FNEnvironment',	'test')
 	,('inResponse', 	'CSSeGeckoConnector',	'Port',	'8005')	-- Port 8004 is usually prod, 8005 test
-	,('Interfacing', 	'CSSeGecko', 'WebServiceUrl', 'http://MYCSSSERVER:8005/egecko/egeckointerface') -- NEW version
+	,('Interfacing', 	'CSSeGecko', 'WebServiceUrl', 'http://MYCSSSERVER:8005/egecko/egeckointerface')
 	,('Insight',	'Global',	'Skin',	'13')  -- Skin 13 = 'Money Twins' (blue)
 "
 
-# Insert "X." in all Email Addresses to avoid sending emails from the test environment:
-[string]$EmailAddressDomainPrefix="X."
 
 # Set ALL Email addresses in the Insight database to a specific test email address:
-# If this parameter is not empty, the parameter "$EmailAddressDomainPrefix" has no effect!
-[string]$ReplaceAllEmailAddressesBy=""   # e.g. "InsightTest@mycompany.com" 
+
+# More than one address can be provided by a comma separated list.
+[string]$ReplaceAllEmailAddressesBy="InsightTest@mycompany.com" 
+
+# Insert a suffix in all Email Addresses to completely avoid sending emails from the test environment:
+# Hint: This parameter has no effect when "$ReplaceAllEmailAddressesBy" is used!
+[string]$EmailAddressDomainPrefix=""	# e.g. "X."
 
 # 2020 Construct database modifications
 #
