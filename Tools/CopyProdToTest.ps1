@@ -827,7 +827,7 @@ if ( $PurgeAllTransactionalData) {
             $GenerateScript= $ScriptFullPath + "\GenerateTruncateRecursive.ps1"
             $SqlFileTmp=$env:TMP + "\TruncateRecursive.sql"
             & $GenerateScript -DatabaseServer $TargetServer -DatabaseName $TargetInsightDB -SchemaName $SchemaName -Tablename $TableNameWoSchema >$SQLFileTmp
-			Invoke-sqlcmd -TrustServerCertificate -ServerInstance $TargetServer -Database $TargetInsightDB -InputFile $SqlFileTmp -IncludeSqlUserErrors -OutputSqlErrors -QueryTimeout $SQLTimeoutSec -Verbose
+			Invoke-sqlcmd -TrustServerCertificate -ServerInstance $TargetServer -Database $TargetInsightDB -InputFile $SqlFileTmp -IncludeSqlUserErrors -outputsqlerrors $true -QueryTimeout $SQLTimeoutSec -Verbose
 		}
 	}
 }
