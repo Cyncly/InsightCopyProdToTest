@@ -487,7 +487,7 @@ if ( $do_imos_restore -and ($SourceIMOSDb.Length -gt 0) -and ($TargetIMOSDb.Leng
 		}
 	}
 
-	if ( $TargetInsightDb.Length -gt 0 ) {
+	if ( $TargetInsightDb.Length -gt 0 -and ($SourceIMOSDb -ne $TargetIMOSDb) ) {
 		# Adjust IMOS database name in Insight settings:
 		$Query = "UPDATE s SET setValue = '" + $TargetIMOSDB + "' FROM dbo.Settings s WHERE s.setCategory = 'inSight' AND s.setSubCategory = 'IMOS'	AND s.setName = 'IMOSDatabase'"
 		Write-Msg -Message "Update Insight setting 'IMOSDatabase'..."
