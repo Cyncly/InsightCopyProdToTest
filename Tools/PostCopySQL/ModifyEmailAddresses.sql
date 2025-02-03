@@ -1,4 +1,3 @@
--- $Id: ModifyEmailAddresses.sql 18 2022-03-29 12:50:37Z beckma $ --
 -- Insert a prefix in all Email Addresses to avoid sending emails from the test environment
 -- OR replace all "To" addresses by a specific test mail address and "CC" addresses to NULL.
 

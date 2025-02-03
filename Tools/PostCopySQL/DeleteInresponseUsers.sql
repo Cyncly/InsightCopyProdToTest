@@ -1,4 +1,3 @@
--- $Id: DeleteInresponseUsers.sql 12 2022-02-14 14:00:03Z beckma $ --
 -- deletes Inresponse User
 --
 -- Parameters are defined in config.ps1!

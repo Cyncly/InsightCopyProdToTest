@@ -1,4 +1,3 @@
--- $Id: ReplacePaths.sql 12 2022-02-14 14:00:03Z beckma $ --
 -- Global replacements of file/directory paths in:
 --	dbo.settings.setvalue
 --  inResponse.Actions.actFixedParameters

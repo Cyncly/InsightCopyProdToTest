@@ -1,4 +1,3 @@
--- $Id: ReplaceReportURLs.sql 12 2022-02-14 14:00:03Z beckma $ --
 -- Global replacements of Reporting Services URLs
 --
 -- Parameters are defined in config.ps1!

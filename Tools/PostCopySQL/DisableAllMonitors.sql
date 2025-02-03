@@ -1,4 +1,3 @@
--- $Id: DisableAllMonitors.sql 13 2022-02-14 14:02:58Z beckma $ --
 -- Disable All Monitors
 
 IF $DisableAllMonitors = 1

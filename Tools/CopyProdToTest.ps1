@@ -1,4 +1,3 @@
-##### $Id: CopyProdToTest.ps1 37 2023-08-22 14:57:56Z beckma $
 
 Param(
 	[string]$Config		# subdirectory containing config file and custom SQL Scripts

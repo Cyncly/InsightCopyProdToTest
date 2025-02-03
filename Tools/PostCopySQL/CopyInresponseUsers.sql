@@ -1,4 +1,3 @@
--- $Id: CopyInresponseUsers.sql 11 2022-02-14 13:53:39Z beckma $ ----------------
 -- creates logins as inSight user
 -- creates logins as inResponse user
 -- copies all action types from a reference inResponse user to the respective user

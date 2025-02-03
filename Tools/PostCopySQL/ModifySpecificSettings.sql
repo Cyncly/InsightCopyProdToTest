@@ -1,4 +1,3 @@
--- $Id: ModifySpecificSettings.sql 12 2022-02-14 14:00:03Z beckma $ --
 -- Set specific Insight settings to fix values.
 
 -- Parameters are defined in config.ps1!

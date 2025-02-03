@@ -1,4 +1,3 @@
--- $Id: ReplacePrinters.sql 12 2022-02-14 14:00:03Z beckma $ --
 -- Replacement of Physical printer names
 --
 -- Parameters are defined in config.ps1!
