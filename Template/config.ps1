@@ -33,6 +33,12 @@
 # Recovery Model of the target databases ("full" or "simple"):
 [string]$TargetRecoveryModel 	= "simple"
 
+# Target Path for Data files (by default Server settings are used)
+[string]$TargetDataPath=""
+# Target Path for Log files (by default Server settings are used)
+[string]$TargetLogPath=""
+
+
 # Skip Backup and Restore and run only modification scripts:
 [boolean]$SkipBackupAndRestore=$false
 

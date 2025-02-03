@@ -1,3 +1,5 @@
+2025-02-03
+- Added option to define path for target data files and transaction log files.
 2024-10-10
 - Changes when modifying email addresses:
 	- The "from" field will not be modified any longer

@@ -50,6 +50,9 @@ if ( Test-Path $Configfile ){
 [string]$StoredProcCleanupTransactionalData=""
 [boolean]$CheckBackupPath=$true
 [string]$NewInstallationScriptsBasedir=$BasePath + "\tools\NewInstallationScripts"
+[string]$TargetDataPath=""
+[string]$TargetLogPath=""
+
 # Read config file:
 . $Configfile
 # Check/Input Parameter
@@ -341,8 +344,16 @@ if ( $do_insight_restore -and $TargetInsightDb.Length -gt 0 ) {
 	}
 	$restore.Devices.Add($device)
 
-	$dataPath = $TServer.Settings.Defaultfile
-	$logPath = $TServer.Settings.DefaultLog
+	if ( $TargetDataPath.Length -gt 0){
+		$dataPath = $TargetDataPath
+	} else {
+		$dataPath = $TServer.Settings.Defaultfile
+	}
+	if ( $TargetLogPath.Length -gt 0){
+		$logPath = $TargetLogPath
+	} else {
+		$logPath = $TServer.Settings.DefaultLog
+	}
 
 	foreach ($file in $restore.ReadFileList($TServer)) 
 	{
@@ -445,8 +456,16 @@ if ( $do_imos_restore -and ($SourceIMOSDb.Length -gt 0) -and ($TargetIMOSDb.Leng
 	}
 	$restore.Devices.Add($device)
 
-	$dataPath = $TServer.Settings.Defaultfile
-	$logPath = $TServer.Settings.DefaultLog
+	if ( $TargetDataPath.Length -gt 0){
+		$dataPath = $TargetDataPath
+	} else {
+		$dataPath = $TServer.Settings.Defaultfile
+	}
+	if ( $TargetLogPath.Length -gt 0){
+		$logPath = $TargetLogPath
+	} else {
+		$logPath = $TServer.Settings.DefaultLog
+	}
 
 	foreach ($file in $restore.ReadFileList($TServer)) 
 	{
@@ -541,8 +560,16 @@ if ( $do_imos_restore -and ($SourceIMOSDbXB.Length -gt 0) -and ($TargetIMOSDbXB.
 	}
 	$restore.Devices.Add($device)
 
-	$dataPath = $TServer.Settings.Defaultfile
-	$logPath = $TServer.Settings.DefaultLog
+	if ( $TargetDataPath.Length -gt 0){
+		$dataPath = $TargetDataPath
+	} else {
+		$dataPath = $TServer.Settings.Defaultfile
+	}
+	if ( $TargetLogPath.Length -gt 0){
+		$logPath = $TargetLogPath
+	} else {
+		$logPath = $TServer.Settings.DefaultLog
+	}
 
 	foreach ($file in $restore.ReadFileList($TServer)) 
 	{
