@@ -691,7 +691,6 @@ if ( $TargetInsightDb.Length -gt 0 ) {
 					$f=$f.replace('$ReportServerSubfolderTarget',$ReportServerSubfolderTarget)
 					$f=$f.replace('$PrinterMapping',$PrinterMapping)
 					$f=$f.replace('$DisableAllMonitors',[int]$DisableAllMonitors)
-					$f=$f.replace('$RestoreWebservices',[int]$RestoreWebservices)
 					$f|set-content $SqlFileTmp
 					Invoke-sqlcmd -TrustServerCertificate -ServerInstance $TargetServer -Database $TargetInsightDB -InputFile $SqlFileTmp -QueryTimeout $SQLTimeoutSec -Verbose
 				}
@@ -703,6 +702,10 @@ if ( $TargetInsightDb.Length -gt 0 ) {
 				$Query="IF OBJECT_ID(N'"+$Tablename+"', N'U') IS NOT NULL ALTER TABLE "+$Tablename+" ENABLE TRIGGER all"
 				Invoke-sqlcmd -TrustServerCertificate -ServerInstance $TargetServer -Database $TargetInsightDB -Query $Query -QueryTimeout $SQLTimeoutSec -Verbose
 			}
+		}
+		if ( $RestoreWebservices -eq $true ){
+			Write-msg -Message "Restore Inresponse Webservice definitions from Master DB..."
+			Invoke-sqlcmd -TrustServerCertificate -ServerInstance $TargetServer -Database $TargetInsightDb -InputFile "$StandardSQLScriptsDir\RestoreInresponseServices.sql" -QueryTimeout $SQLTimeoutSec -Verbose
 		}
 	} else {
 		Write-Msg -Message "Directory $StandardSQLScriptsDir not found!" -Severity ERROR

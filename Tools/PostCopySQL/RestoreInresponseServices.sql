@@ -1,6 +1,5 @@
 -- Restore Inresponse Webservice entries
 
-IF $RestoreWebservices = 1
 BEGIN
 	DECLARE	@svcHostName [nvarchar](50)
 	DECLARE	@svcServiceName [nvarchar](256)
