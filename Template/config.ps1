@@ -108,6 +108,7 @@
 	,('inResponse', 	'CSSeGeckoConnector',	'Port',	'8005')	-- Port 8004 is usually prod, 8005 test
 	,('Interfacing', 	'CSSeGecko', 'WebServiceUrl', 'http://MYCSSSERVER:8005/egecko/egeckointerface')
 	,('Insight',	'Global',	'Skin',	'13')  -- Skin 13 = 'Money Twins' (blue)
+	,('Insight',	'Environment',	'EnvironmentName',	'Test')  -- For Insight 14.2 ff
 "
 
 
@@ -133,8 +134,9 @@
 [string]$ReportServerURITarget="" # e.g. "http://DBSRV2/ReportServer"
 
 # RS Subfolder (optional):
-[string]$ReportServerSubfolderSource=""		# e.g. "PROD"
-[string]$ReportServerSubfolderTarget=""		# e.g. "TEST"
+# (without leading "/" ! )
+[string]$ReportServerSubfolderSource=""		# e.g. "PROD/" or "" for root folder
+[string]$ReportServerSubfolderTarget=""		# e.g. "TEST/" or "" for root folder
 
 # Copy all Reports from Source to Target ?  $true/$false
 [boolean]$CopyReportServerSubfolder=$false
