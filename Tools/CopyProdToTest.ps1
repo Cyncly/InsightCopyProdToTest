@@ -51,6 +51,7 @@ if ( Test-Path $Configfile ){
 [string]$NewInstallationScriptsBasedir=$BasePath + "\tools\NewInstallationScripts"
 [string]$TargetDataPath=""
 [string]$TargetLogPath=""
+[string]$DBUsersToDelete= ""
 
 # Read config file:
 . $Configfile
@@ -403,6 +404,18 @@ if ( $do_insight_restore -and $TargetInsightDb.Length -gt 0 ) {
 			}
 			Write-Msg -Message "Grant DB_OWNER rights to $DbOwner..." 
 			$Query="ALTER ROLE [db_owner] ADD MEMBER [" + $DbOwner + "]"
+			Invoke-sqlcmd -TrustServerCertificate -ServerInstance $TargetServer -Database $TargetInsightDB -Query $Query -verbose
+		}
+	}
+	
+	# Delete Database users:
+	$DBUsersToDelete.split(",")|foreach{
+		$DbUser=$_
+		if ( $DbUser.Length -gt 0 ) {
+			Write-Msg -Message "Drop Database User $DbUser..."
+			$Query="DROP SCHEMA IF EXISTS [" + $DbUser + "]"
+			Invoke-sqlcmd -TrustServerCertificate -ServerInstance $TargetServer -Database $TargetInsightDB -Query $Query -verbose
+			$Query="DROP USER IF EXISTS [" + $DbUser + "]"
 			Invoke-sqlcmd -TrustServerCertificate -ServerInstance $TargetServer -Database $TargetInsightDB -Query $Query -verbose
 		}
 	}

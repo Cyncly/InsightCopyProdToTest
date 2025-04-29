@@ -1,3 +1,5 @@
+2025-04-29
+-- Added option to delete Database Users from the target database, e.g. when different domain groups are used in the source and target environment
 2025-02-28
 -- Fixed error: Webservice could not be started, because Conversation handles were not created when restoring saved Webservice definitions.
 2025-02-25
