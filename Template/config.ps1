@@ -77,8 +77,9 @@
 #$InresponseUsersToDelete="(N'DOMAIN\inresponse1'),(N'DOMAIN\inresponse2')"
 
 # Database users to Delete in Target database. This can be Domain users or groups or SQL Logins (comma-separated list)
-[string]$DBUsersToDelete	= ""	# e.g.  "MYDOMAIN\InsightUsersProd,MYDOMAIN\InresponseProd"
-
+[string]$DBUsersToDelete	= ""	# empty list
+# Example:
+#$DBUsersToDelete="(N'DOMAIN\InsightUsersProd'),(N'DOMAIN\InresponseProd')"
 
 # Disable all Inresponse Monitors:
 [boolean]$DisableAllMonitors = $true

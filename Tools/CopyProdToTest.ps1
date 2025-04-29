@@ -407,18 +407,6 @@ if ( $do_insight_restore -and $TargetInsightDb.Length -gt 0 ) {
 			Invoke-sqlcmd -TrustServerCertificate -ServerInstance $TargetServer -Database $TargetInsightDB -Query $Query -verbose
 		}
 	}
-	
-	# Delete Database users:
-	$DBUsersToDelete.split(",")|foreach{
-		$DbUser=$_
-		if ( $DbUser.Length -gt 0 ) {
-			Write-Msg -Message "Drop Database User $DbUser..."
-			$Query="DROP SCHEMA IF EXISTS [" + $DbUser + "]"
-			Invoke-sqlcmd -TrustServerCertificate -ServerInstance $TargetServer -Database $TargetInsightDB -Query $Query -verbose
-			$Query="DROP USER IF EXISTS [" + $DbUser + "]"
-			Invoke-sqlcmd -TrustServerCertificate -ServerInstance $TargetServer -Database $TargetInsightDB -Query $Query -verbose
-		}
-	}
 }	
 # Restore IMOS database
 if ( $do_imos_restore -and ($SourceIMOSDb.Length -gt 0) -and ($TargetIMOSDb.Length -gt 0) ) {
@@ -704,6 +692,7 @@ if ( $TargetInsightDb.Length -gt 0 ) {
 					$f=$f.replace('$ReportServerSubfolderTarget',$ReportServerSubfolderTarget)
 					$f=$f.replace('$PrinterMapping',$PrinterMapping)
 					$f=$f.replace('$DisableAllMonitors',[int]$DisableAllMonitors)
+					$f=$f.replace('$DBUsersToDelete',$DBUsersToDelete)
 					$f|set-content $SqlFileTmp
 					Invoke-sqlcmd -TrustServerCertificate -ServerInstance $TargetServer -Database $TargetInsightDB -InputFile $SqlFileTmp -QueryTimeout $SQLTimeoutSec -Verbose
 				}

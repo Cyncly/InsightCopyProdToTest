@@ -1,3 +1,4 @@
+DeleteDatabaseUsers.sql
 ReplacePaths.sql
 ReplaceReportURLs.sql
 ModifyEmailAddresses.sql
