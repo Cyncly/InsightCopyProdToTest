@@ -113,7 +113,7 @@
 	,('inResponse', 	'CSSeGeckoConnector',	'Port',	'8005')	-- Port 8004 is usually prod, 8005 test
 	,('Interfacing', 	'CSSeGecko', 'WebServiceUrl', 'http://MYCSSSERVER:8005/egecko/egeckointerface')
 	,('Insight',	'Global',	'Skin',	'13')  -- Skin 13 = 'Money Twins' (blue)
-	,('Insight',	'Environment',	'EnvironmentName',	'Test')  -- For Insight 14.2 ff
+	,('Insight',	'Environment',	'EnvironmentName',	'** TEST **')  -- For Insight 14.2 ff
 	,('Interfacing',	'3CADNext',	'ConfiguratorURL',	'https://MYCOMPANYtest.3cad.com')  -- 3CAD Frontend URL
 	,('Interfacing',	'3CADNext',	'URLFor3CADBackend',	'https://MYCOMPANYtestbk.d-nex.it')  -- 3CAD Backend URL
 	,('Interfacing',	'3CADNext',	'URLFor3CADPostProcessorService',	'https://3cadnextjob.3cad.com/postprocessor.asmx')  -- 3CAD Post Processor URL
