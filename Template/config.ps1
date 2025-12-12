@@ -64,7 +64,7 @@
 
 # Inresponse User Mapping from Prod to Test environment (optional)
 # This is only required if different Inresponse users are used in Test and Prod.
-# Syntax : ('INRESPONSE_PROD1','INRESPONSE_TEST1')[,('INRESPONSE_PROD2','INRESPONSE_TEST2')]...
+# Syntax : ('DOMAIN\InresponseProd1','DOMAIN\InresponseTest1')[,('DOMAIN\InresponseProd2','DOMAIN\InresponseTest2')]...
 [string]$InResponseUserMapping		= "('','')" # empty mapping
 # Example:
 #$InResponseUserMapping		= "(N'DOMAIN\inresponse1',	N'DOMAIN\inresponse_test'),(N'DOMAIN\inresponse2',N'DOMAIN\inresponse_test')"
@@ -77,7 +77,7 @@
 #$InresponseUsersToDelete="(N'DOMAIN\inresponse1'),(N'DOMAIN\inresponse2')"
 
 # Database users to Delete in Target database. This can be Domain users or groups or SQL Logins (comma-separated list)
-[string]$DBUsersToDelete	= ""	# empty list
+[string]$DBUsersToDelete	= "('')"	# empty list
 # Example:
 #$DBUsersToDelete="(N'DOMAIN\InsightUsersProd'),(N'DOMAIN\InresponseProd')"
 

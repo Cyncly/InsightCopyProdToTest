@@ -6,6 +6,7 @@ DECLARE @DeleteDBUsers TABLE (OldUser NVARCHAR(MAX))
 INSERT INTO @DeleteDBUsers VALUES 
 	$DBUsersToDelete
 
+DELETE FROM @DeleteDBUsers WHERE Olduser IS NULL OR OldUser=''															  
 DECLARE @SchemaName nvarchar(100)
 		,@SqlStm nvarchar(MAX)
 		,@Servicename nvarchar(MAX)

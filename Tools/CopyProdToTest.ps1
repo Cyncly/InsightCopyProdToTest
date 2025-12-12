@@ -62,6 +62,9 @@ if ( ! $SQLTimeoutSec) {
 if ( $ReplaceAllEmailAddressesBy.Length -gt 0 ) {
 	$EmailAddressDomainPrefix=""
 }
+if ( $DBUsersToDelete.Length -eq 0 ) {
+	$DBUsersToDelete	= "('')"
+}
 
 # Check utilities directory:
 if ( Test-Path $NewInstallationScriptsBasedir ){

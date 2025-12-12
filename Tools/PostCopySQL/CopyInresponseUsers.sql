@@ -9,24 +9,62 @@ INSERT INTO @CopyInResponseUsers VALUES
 
 ------------------------------------------------------
 -- Do Updates
-DECLARE @UserList table (usrName0 nvarchar(50), usrID integer)
+DECLARE @UserList table (usrName nvarchar(50), usrID integer)
+DECLARE @MajorVersion int, @MinorVersion int, @PatchVersion int, @BuildNo int, @VersionNum int
+
+EXEC dbo.spAPP_utlValidateApplicationSchemaMatch 
+     @MajorVersion = @MajorVersion OUTPUT
+    ,@MinorVersion = @MinorVersion OUTPUT
+    ,@PatchVersion = @PatchVersion OUTPUT
+    ,@BuildNo = @BuildNo OUTPUT
+    ,@ReturnVersionOnly = 1
+SET @VersionNum=@MajorVersion*100 + @MinorVersion*10 + @PatchVersion
+
 IF EXISTS ( SELECT 1 FROM @CopyInResponseUsers WHERE LEN(OldUser) > 0 )
 BEGIN
-	MERGE dbo.Userlist AS trg
-	USING
-		( SELECT DISTINCT NewUser FROM @CopyInresponseUsers
-		  WHERE LEN(NewUser) > 0
-		) AS src
-	ON (trg.usrLogin = src.NewUser)
-	WHEN NOT MATCHED
-	THEN
-		INSERT 
-		(usrName, usrLogin) 
-		
-		VALUES
-		(src.NewUser , src.NewUser)
-	OUTPUT inserted.usrName, inserted.usrID INTO @userList
-	OUTPUT inserted.usrName, inserted.usrID;
+	IF @VersionNum >= 1420
+	BEGIN -- Ab 14.2
+		DECLARE @login_name nvarchar(max)
+		DECLARE @RC int, @usrID int, @ugulID int
+		DECLARE c_newusers CURSOR FOR SELECT DISTINCT NewUser FROM @CopyInresponseUsers WHERE LEN(NewUser) > 0 AND NewUser NOT IN (SELECT usrLogin FROM dbo.UserList);
+		OPEN c_newusers
+		FETCH NEXT FROM c_newusers INTO @login_name
+		WHILE @@FETCH_STATUS = 0
+		BEGIN
+			SET @usrID=NULL
+			EXECUTE @RC = [dbo].[spBAS_mrgUsers] 
+			   @usrID OUTPUT
+			  ,@usrName = @login_name
+			  ,@usrLogin = @login_name
+			  ,@usrEnabled = 1;
+			INSERT INTO @userlist (usrname, usrID) VALUES ( @login_name, @usrID)
+			EXECUTE [dbo].[spBAS_mrgUserGroupUsers]
+				@ugulId OUTPUT
+				,@usrId = @usrID
+				,@ugrId = 6
+				,@IsTeamLeader = 1
+
+			FETCH NEXT FROM c_newusers INTO @login_name
+		END
+		CLOSE c_newusers
+	END ELSE 
+	BEGIN -- Bis 14.1
+		MERGE dbo.Userlist AS trg
+		USING
+			( SELECT DISTINCT NewUser FROM @CopyInresponseUsers
+			  WHERE LEN(NewUser) > 0
+			) AS src
+		ON (trg.usrLogin = src.NewUser)
+		WHEN NOT MATCHED
+		THEN
+			INSERT 
+			(usrName, usrLogin) 
+			
+			VALUES
+			(src.NewUser , src.NewUser)
+		OUTPUT inserted.usrName, inserted.usrID INTO @userList
+		OUTPUT inserted.usrName, inserted.usrID;
+	END
 
 	IF EXISTS (SELECT * from @UserList)
 	BEGIN
